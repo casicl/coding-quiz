@@ -1,6 +1,11 @@
 //GIVEN I am taking a code quiz
 //WHEN I click the start button
+document.getELementById("button").addEventListener("click", "Start Quiz"); //how start quiz????)
 //THEN a timer starts and I am presented with a question
+
+
+
+    
 //WHEN I answer a question
 //THEN I am presented with another question
 //WHEN I answer a question incorrectly
