@@ -1,0 +1,15 @@
+
+.high-scores {
+    color: blueviolet;
+    text-align: left;
+    font-size: small;
+}
+.timer {
+    color: blueviolet;
+    text-align: right;
+    font-size: small;
+}
+
+.page-wrapper {
+    background-color: antiquewhite;
+}
