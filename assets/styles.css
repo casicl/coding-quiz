@@ -28,11 +28,21 @@ body {
     text-align: center;
 }
 
+#title {
+    font-weight: bold;
+
+}
+
 
 #possible-answers button {
     display: flex;
     flex-direction: column;
     
+}
 
-
+#feedback {
+    display: inline;
+    font-size: larger;
+    color: red;
+    
 }

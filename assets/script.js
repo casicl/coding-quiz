@@ -10,6 +10,8 @@ var timerEl = document.getElementById("time");
 var finalScore = document.getElementById("final-score");
 var initials = document.getElementById("initials");
 var choicesEl = document.getElementById("possible-answers");
+var responseEl = document.getElementById("response");
+ 
 
 //quiz questions and answers
 var questions = [
@@ -54,16 +56,14 @@ var questions = [
     correctAnswer: "option b",
   },
 ];
-//let currentQuestionIndex = questions.slice[0];
-//how to get question from array???
 
 let seconds = 10;
-
+//button to start quiz
 startBtn.addEventListener("click", startQuiz);
 {
 }
 
-//how start quiz????)
+
 //THEN a timer starts and I am presented with a question
 //timer starts when I click start quiz button and first question appears
 
@@ -90,13 +90,14 @@ function startTimer() {
     }
   }, 1000);
 }
-
+choicesEl.addEventListener("click", questionClick);
 //question function
 function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
   var titleEl = document.getElementById("title");
   titleEl.textContent = currentQuestion.title;
 console.log("currentQuestion", currentQuestion.questionTitle)
+    titleEl.append(currentQuestion.questionTitle);
   for (var i = 0; i < currentQuestion.possibleAnswers.length; i++) {
     var choice = currentQuestion.possibleAnswers[i];
     console.log("choice", choice)
@@ -109,15 +110,44 @@ console.log("currentQuestion", currentQuestion.questionTitle)
   }
 }
 function questionClick(event){
-  console.log(event.target.value)
-}
-choicesEl.addEventListener("click", questionClick);
+  var buttonEl = event.target;
+ 
 
-//if possible answers = correct answer
+    // if (!buttonEl.value.matches(".possible-answers")) {
+  //   return;
+  // }
+  var currentQuestion = questions[currentQuestionIndex].correctAnswer;
+  var answerEl = document.getElementById("response");
+  answerEl.textContent = currentQuestion.correctAnswer;
+console.log(questions[currentQuestionIndex].correctAnswer);
+  //unhide response element
+  answerEl.removeAttribute("class");
+  //right or wrong answer response
+  if (buttonEl.value !==(questions[currentQuestionIndex].correctAnswer)) {
+    
+    //time penalty
+    //create an element for right/wrong feedback
+    
+    answerEl.textContent = "Incorrect";
+  } else {
+    answerEl.textContent = "Correct";
+  }
+
+  currentQuestionIndex++;
+
+};
+
+
+
+
+//  const highScores = JSON.stringify(score);
+//if ()possible answers = correct answer
+//display correct, go to next question
+
 //if (questionClick===questions.correctAnswer) {
-  //console.log("correct")
+//penalize time, then next question, display incorrect
 //} else {
-  //console.log("incorrect")
+  
 //}
 //title.textContent = currentQuestionIndex.questionTitle;
 /* var questionObject = questions [currentQuestionIndex];
