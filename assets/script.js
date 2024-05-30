@@ -2,7 +2,7 @@
 //WHEN I click the start button
 
 //global variables, y'all
-currentQuestionIndex = 0;
+var currentQuestionIndex = 0;
 var answersEl = document.getElementById("possible-answers");
 var initialsBtn = document.getElementById("initials-submit")
 var startBtn = document.getElementById("start-quiz");
@@ -57,7 +57,7 @@ var questions = [
   },
 ];
 
-let seconds = 10;
+let seconds = 90;
 //button to start quiz
 startBtn.addEventListener("click", startQuiz);
 {
@@ -96,6 +96,7 @@ function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
   var titleEl = document.getElementById("title");
   titleEl.textContent = currentQuestion.title;
+  choicesEl.innerHTML = '';
 console.log("currentQuestion", currentQuestion.questionTitle)
     titleEl.append(currentQuestion.questionTitle);
   for (var i = 0; i < currentQuestion.possibleAnswers.length; i++) {
@@ -110,12 +111,9 @@ console.log("currentQuestion", currentQuestion.questionTitle)
   }
 }
 function questionClick(event){
+  event.preventDefault();
   var buttonEl = event.target;
  
-
-    // if (!buttonEl.value.matches(".possible-answers")) {
-  //   return;
-  // }
   var currentQuestion = questions[currentQuestionIndex].correctAnswer;
   var answerEl = document.getElementById("response");
   answerEl.textContent = currentQuestion.correctAnswer;
@@ -124,17 +122,27 @@ console.log(questions[currentQuestionIndex].correctAnswer);
   answerEl.removeAttribute("class");
   //right or wrong answer response
   if (buttonEl.value !==(questions[currentQuestionIndex].correctAnswer)) {
-    
     //time penalty
+    time -= 10;
+
+    if (time < 0) {
+      time = 0;
+    }
     //create an element for right/wrong feedback
     
     answerEl.textContent = "Incorrect";
   } else {
     answerEl.textContent = "Correct";
   }
-
+//HOW DO I GO TO THE NEXT QUESTION
   currentQuestionIndex++;
 
+  if (time <= 0 || currentQuestionIndex === questions.length) {
+    quizEnd();
+
+  } else {
+    showQuestion();
+  }
 };
 
 
