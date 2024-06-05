@@ -137,6 +137,8 @@ console.log(questions[currentQuestionIndex].correctAnswer);
 //HOW DO I GO TO THE NEXT QUESTION
   currentQuestionIndex++;
 
+ 
+
   if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
 
@@ -144,10 +146,29 @@ console.log(questions[currentQuestionIndex].correctAnswer);
     showQuestion();
   }
 };
+//end the quiz
+function quizEnd(){
+    clearInterval(timerEl);
+    var finalScore = document.getElementById("final-score");
+    finalScore.removeAttribute("class");
+    var yourScore = document.getElementById("score");
+    yourScore.textContent = time;
 
+}
 
+function showScores() {
+  var highScores = JSON.parse(localStorage.getItem("high-scores")) || [];
 
+  for (var i= 0; i < highScores.length; i += 1) {
+    var liEl = document.createElement('li');
+    liEl.textContent = highScores[i].initials + "-" + highScores[i].score;
+    var ulEl = document.getElementById('high-scores');
+    ulEl.appendChild(liEl);
+  }
 
+}
+
+showScores();
 //  const highScores = JSON.stringify(score);
 //if ()possible answers = correct answer
 //display correct, go to next question
