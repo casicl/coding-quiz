@@ -3,7 +3,7 @@ body {
     margin: 25px;
     font-family: Arial, Helvetica, sans-serif;
 }
-.high-scores {
+#high-scores {
     color: blueviolet;
     text-align: left;
     font-size: medium;
